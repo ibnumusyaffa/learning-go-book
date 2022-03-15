@@ -132,10 +132,10 @@ func main() {
 			name: "celia",
 		}
 
-		fmt.Println(beth == secondPerson(antony)) //false
+		fmt.Println(beth == secondPerson(antony)) //false, convert antony to secondPerson type
 
 		fmt.Println(celia)
-		// fmt.Println(celia == antony) //error
+		// fmt.Println(celia == antony) //compile time error, because is not same tpe
 
 	}()
 
