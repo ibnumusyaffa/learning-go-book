@@ -32,5 +32,5 @@ func main() {
 	fmt.Println(hs)
 
 	s.say()
-	//hs.say() highScore does not have say metho
+	//hs.say() highScore does not have say method
 }

@@ -18,9 +18,31 @@ type Manager struct {
 	Reports []Employee
 }
 
-// func (m Manager) FindNewEmployees() []Employee {
-// 	// do business logic
-// }
+func (m Manager) FindNewEmployees() []Employee {
+	return m.Reports
+}
+
+///////////////////////////////////////////////////////////////////////
+type Inner struct {
+	A int
+}
+
+func (i Inner) IntPrinter(val int) string {
+	return fmt.Sprintf("Inner: %d", val)
+}
+
+func (i Inner) Double() string {
+	return i.IntPrinter(i.A * 2)
+}
+
+type Outer struct {
+	Inner
+	S string
+}
+
+func (o Outer) IntPrinter(val int) string {
+	return fmt.Sprintf("Outer: %d", val)
+}
 
 func main() {
 
@@ -32,8 +54,17 @@ func main() {
 		},
 		Reports: []Employee{},
 	}
-	fmt.Println(m.ID)            // prints 12345
+	fmt.Println(m.ID)            // prints 12345 , shorcut to m.Employee.ID
 	fmt.Println(m.Employee.ID)   // prints 12345, if has sampe property to outer struct, must access with full path
 	fmt.Println(m.Description()) // prints Bob Bobson (12345)
 	fmt.Println(m.Reports)
+
+	fmt.Println("-------------------------------------------------")
+	o := Outer{
+		Inner: Inner{
+			A: 10,
+		},
+		S: "Hello",
+	}
+	fmt.Println(o.Double())
 }
