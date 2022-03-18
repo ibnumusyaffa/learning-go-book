@@ -2,44 +2,27 @@ package main
 
 import "fmt"
 
-func failedUpdate(g *int) {
-	x := 10
-	g = &x
+func failedUpdate(value *int) {
+	x := 99
+	value = &x
+	//pointer is update, but not reflect in outside function
+	// fmt.Println("failedUpdate value = ", *value)
 }
 
-func failedUpdate2(p *int) {
-	x := 20
-	p = &x
-}
-
-func update(p *int) {
-	*p = 20
+func update(value *int) {
+	*value = 99
 }
 
 func main() {
-	var f *int // f is nil
-	failedUpdate(f)
-	fmt.Println(f) // prints nil
+	var a *int // f is nil
+	failedUpdate(a)
+	fmt.Println("a", a)
 
-	fmt.Println("---------------------")
+	b := 10
+	failedUpdate(&b)
+	fmt.Println("b", b)
 
-	x := 10
-	failedUpdate2(&x)
-	fmt.Println(x)
-	update(&x)
-	fmt.Println(x)
-
-	fmt.Println("----------------------------------")
-	myArr := []int{1, 2, 3, 4}
-	fmt.Println(myArr)
-	modArr(myArr)
-	fmt.Println(myArr)
-
-}
-
-func modArr(arr []int) {
-	arr[0] = 99
-	arr = append(arr, 10)
-	//not affect original array
-	fmt.Println("inside mod arr", arr)
+	c := 10
+	update(&c)
+	fmt.Println("c", c)
 }

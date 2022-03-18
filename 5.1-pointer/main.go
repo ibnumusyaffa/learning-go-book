@@ -2,72 +2,63 @@ package main
 
 import "fmt"
 
+type foo struct {
+	FirstName string
+}
+
 type person struct {
 	FirstName  string
 	MiddleName *string
 	LastName   string
 }
 
-type animal struct {
-	FirstName  string
-	MiddleName int
-	LastName   int
-}
-
 func main() {
+	var a int32 = 10
+	var b bool = true
+	pointerA := &a
+	pointerB := &b
+	var pointerC *string
+	fmt.Println("pointerA:", pointerA)
+	fmt.Println("pointerB:", pointerB)
+	fmt.Println("pointerC:", pointerC)
 
-	var x int = 123
-	//get pointer of x
-	pointerX := &x
-	fmt.Println(pointerX)  // prints a memory address
-	fmt.Println(*pointerX) // prints 10
+	fmt.Println("PointerA value:", *pointerA)
 
-	fmt.Println("-----------------------------------------------")
-	var z string = "aaa"
-	//pointer type of string
-	var pointerZ *string
-	//The zero value for a pointer is nil
-	fmt.Println(pointerZ)
-	pointerZ = &z
-	fmt.Println(pointerZ)
-	fmt.Println(*pointerZ) // deferencing will panic when pointer is nill
-	fmt.Println("?????-----------------------------------------------")
-	var a = new(int)
-	fmt.Println(a == nil) // prints false
-	fmt.Println(*a)       // 0
-	fmt.Println("-----------------------------------------------")
-	// Before dereferencing a pointer, you must make sure that the pointer is non-nil. Your program will panic if you attempt to dereference a nil pointer:
-	// var x *int
-	// fmt.Println(x == nil) // prints true
-	// fmt.Println(*x)       // panics
-	p := animal{FirstName: "dog"}
+	if pointerC != nil {
+		//*pointerC will panic because *pointerC is nil
+		fmt.Println("PointerC Value:", *pointerC)
+	}
 
-	mutStruct(p)
-	fmt.Println(p)
-	// fmt.Println(*p)
+	//The zero value for a pointer is nil. We’ve seen nil a few times before, as the zero value for slices, maps, and functions. All of these types are implemented with pointers. (Two more types, channels and interfaces, are also implemented with pointers
 
-	fmt.Println("------------------------------------------------")
-	func() {
-		x := 10
-		y := x
-		y = 20
+	fmt.Println("-----------------------------------------------------------------------------")
 
-		fmt.Println(x, y)
-	}()
+	var d = new(int)
+	fmt.Println("d == nill :", d == nil) // prints false
+	fmt.Println("*d value", *d)          // prints 0
 
-	fmt.Println("------------------------------------------")
-	y := 10
-	myFun(&y)
-	fmt.Println("after", y)
+	e := &foo{}
+	fmt.Println("e:", e)
 
+	var f string
+	g := &f
+	fmt.Println("g:", g)
+
+	// p := person{
+	// 	FirstName:  "Pat",
+	// 	MiddleName: "Perry", // This line won't compile
+	// 	LastName:   "Peterson",
+	// }
+
+	h := person{
+		FirstName:  "Pat",
+		MiddleName: stringp("Perry"), // This works
+		LastName:   "Peterson",
+	}
+
+	fmt.Println("h", h)
 }
 
-func myFun(myInt *int) {
-	fmt.Println("before", *myInt)
-	*myInt = 20
-	// fmt.Println(*myInt)
-}
-
-func mutStruct(a animal) {
-	a.FirstName = "new name"
+func stringp(s string) *string {
+	return &s
 }

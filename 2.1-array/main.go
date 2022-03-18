@@ -32,4 +32,14 @@ func main() {
 
 	//This declares f to be an array of length 2 whose type is an array of ints of length 3. This sounds pedantic, but there are languages with true matrix support; Go isn’t one of them.
 	fmt.Println(len(a))
+
+	myArr := [4]int{1, 2, 3, 4}
+	fmt.Println("myArr", myArr)
+	mutArray(myArr)
+	fmt.Println("myArr", myArr)
+}
+
+//array is immutable
+func mutArray(arr [4]int) {
+	arr[0] = 10
 }
