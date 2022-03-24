@@ -1,1 +1,1 @@
-notes from "learning go" book
+https://earthly.dev/blog/golang-errors/

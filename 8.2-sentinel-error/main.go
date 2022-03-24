@@ -1,16 +1,31 @@
 package main
 
 import (
-	"archive/zip"
-	"bytes"
+	"errors"
 	"fmt"
 )
 
-func main() {
-	data := []byte("This is not a zip file")
-	notAZipFile := bytes.NewReader(data)
-	_, err := zip.NewReader(notAZipFile, int64(len(data)))
-	if err == zip.ErrFormat {
-		fmt.Println("Told you so")
+var ErrDivideByZero = errors.New("divide by zero")
+
+func Divide(a, b int) (int, error) {
+	if b == 0 {
+		return 0, ErrDivideByZero
 	}
+	return a / b, nil
+}
+
+func main() {
+	a, b := 10, 0
+	result, err := Divide(a, b)
+	if err != nil {
+		switch {
+		case errors.Is(err, ErrDivideByZero):
+			fmt.Println("divide by zero error")
+		default:
+			fmt.Printf("unexpected division error: %s\n", err)
+		}
+		return
+	}
+
+	fmt.Printf("%d / %d = %d\n", a, b, result)
 }
