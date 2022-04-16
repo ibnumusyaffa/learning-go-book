@@ -31,7 +31,7 @@ func main() {
 
 	// Untyped constant
 	const p = 10
-	// All of the following assignments are legal
+	// All the following assignments are legal
 	var q int = p
 	var r float64 = p
 	var s byte = p

@@ -8,7 +8,7 @@ func main() {
 
 	//Boolean, zero value = false
 	var flag bool
-	fmt.Println(flag)
+	fmt.Println("flag:", flag)
 
 	// Integer, zero value = 0
 	// int = int64 in 64bit cpu and int32 in 32bit cpu
@@ -22,16 +22,16 @@ func main() {
 	// uint64 0 to 18446744073709551615
 	// byte is alias of uint8
 	var myInteger int
-	fmt.Println(myInteger)
+	fmt.Println("myInteger:", myInteger)
 
 	//string,zero value = empty string ''
 	var myString string
-	fmt.Println(myString)
+	fmt.Println("myString:", myString)
 
 	//float, zero value = 0.0
 	//float32
 	//float64
 	var myFloat float32
-	fmt.Println(myFloat) // 0
+	fmt.Println("myFloat:", myFloat) // 0
 
 }
