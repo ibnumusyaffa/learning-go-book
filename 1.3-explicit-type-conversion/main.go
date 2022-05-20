@@ -18,10 +18,10 @@ func main() {
 
 	toString := strconv.Itoa(123)
 
-	fmt.Println(myInt)
-	fmt.Println(myFloat)
-	fmt.Println(myFloat2)
-	fmt.Println(myInt2)
+	fmt.Println("myInt:", myInt)
+	fmt.Println("myFloat:", myFloat)
+	fmt.Println("myFloat2:", myFloat2)
+	fmt.Println("myInt2", myInt2)
 	fmt.Println(toString)
 
 	// This strictness around types has other implications. Since all type conversions in Go are explicit, you cannot treat another Go type as a boolean. In many languages, a nonzero number or a nonempty string can be interpreted as a boolean true. Just like automatic type promotion, the rules for “truthy” values vary from language to language and can be confusing. Unsurprisingly, Go doesn’t allow truthiness. In fact, no other type can be converted to a bool, implicitly or explicitly. If you want to convert from another data type to boolean, you must use one of the comparison operators (==, !=, >, <, <=, or >=). For example, to check if variable x is equal to 0, the code would be x == 0. If you want to check if string s is empty, use s == "".

@@ -7,11 +7,11 @@ import (
 func main() {
 
 	var a = []int{10, 20, 30}
-	fmt.Println(a)
+	fmt.Println("a:", a)
 
 	var b = []int{1, 5: 4, 6, 10: 100, 15}
 
-	fmt.Println(b)
+	fmt.Println("b:", b)
 
 	b[0] = 10
 	fmt.Println(b[0])
