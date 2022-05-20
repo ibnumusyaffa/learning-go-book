@@ -9,7 +9,7 @@ func main() {
 	var a = []int{10, 20, 30}
 	fmt.Println("a:", a)
 
-	var b = []int{1, 5: 4, 6, 10: 100, 15}
+	var b = []int{2, 2, 3, 3, 5: 7}
 
 	fmt.Println("b:", b)
 
