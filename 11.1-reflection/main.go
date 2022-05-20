@@ -5,39 +5,61 @@ import (
 	"reflect"
 )
 
-type Foo struct {
+type order struct {
 	ordId      int
 	customerId int
+	name       string
+}
+
+func createQuery1(q interface{}) {
+	t := reflect.TypeOf(q)
+	k := t.Kind()
+	v := reflect.ValueOf(q)
+	fmt.Println("Type ", t)
+	fmt.Println("Value ", v)
+	fmt.Println("Kind ", k)
+
+}
+
+func createQuery(q interface{}) {
+	if reflect.ValueOf(q).Kind() == reflect.Struct {
+		t := reflect.TypeOf(q).Name()
+		query := fmt.Sprintf("insert into %s values(", t)
+		v := reflect.ValueOf(q)
+		fmt.Println(v.NumField())
+		for i := 0; i < v.NumField(); i++ {
+			switch v.Field(i).Kind() {
+			case reflect.Int:
+				if i == 0 {
+					query = fmt.Sprintf("%s%d", query, v.Field(i).Int())
+				} else {
+					query = fmt.Sprintf("%s, %d", query, v.Field(i).Int())
+				}
+			case reflect.String:
+				if i == 0 {
+					query = fmt.Sprintf("%s\"%s\"", query, v.Field(i).String())
+				} else {
+					query = fmt.Sprintf("%s, \"%s\"", query, v.Field(i).String())
+				}
+			default:
+				fmt.Println("Unsupported type")
+				return
+			}
+		}
+		query = fmt.Sprintf("%s)", query)
+		fmt.Println(query)
+		return
+
+	}
+	fmt.Println("unsupported type")
 }
 
 func main() {
-	// var x int
-	// xt := reflect.TypeOf(x) // reflect.Type instance
-	// fmt.Println(xt.Name())  // returns int ,
-	// f := Foo{}
-	// ft := reflect.TypeOf(f)
-	// fmt.Println(ft.Name()) // returns Foo
-	// xpt := reflect.TypeOf(&x)
-	// fmt.Println(xpt.Name()) // returns an empty string
-
-	// var x int
-	// xpt := reflect.TypeOf(&x)      // reflect.Type instance
-	// fmt.Println(xpt.Name())        // returns an empty string
-	// fmt.Println(xpt.Kind())        // returns reflect.Ptr
-	// fmt.Println(xpt.Elem().Name()) // returns "int"
-	// fmt.Println(xpt.Elem().Kind()) // returns reflect.Int
-
-	type Foo struct {
-		A int    `myTag:"value"`
-		B string `myTag:"value2"`
+	o := order{
+		ordId:      456,
+		customerId: 56,
+		name:       "ibnu",
 	}
-
-	var f Foo
-	ft := reflect.TypeOf(f)
-	for i := 0; i < ft.NumField(); i++ {
-		curField := ft.Field(i)
-		fmt.Println(curField.Name, curField.Type.Name(),
-			curField.Tag.Get("myTag"))
-	}
+	createQuery(o)
 
 }

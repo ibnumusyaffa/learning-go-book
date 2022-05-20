@@ -26,11 +26,17 @@ func main() {
 	b2, ok := b.(MyInt)
 	//ok = false if b cannot convert to myInt
 	if !ok {
+		fmt.Println("not")
 		return
 	}
 	// fmt.Println(b + 1) error
 	fmt.Println(b2 + 1)
 
+	fmt.Println("-------------------------------------------------------------")
+	var c interface{}
+	c = 4
+	var d int = 4
+	fmt.Println(c.(int) + d)
 }
 
 func doThings(i interface{}) {
