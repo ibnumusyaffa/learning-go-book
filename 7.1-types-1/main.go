@@ -7,7 +7,10 @@ type Person struct {
 }
 
 type Score int
-type Converter func(string) Score
+
+type Converter func(name string, age int) Score
+type Converter2 func(string, int) Score
+
 type TeamScores map[string]Score
 
 type HighScore Score

@@ -11,6 +11,8 @@ func (lp LogicProvider) Process(data string) string {
 	return data
 }
 
+//--------------------------------------------------------
+
 type Logic interface {
 	Process(data string) string
 }
