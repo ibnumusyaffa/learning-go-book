@@ -133,4 +133,19 @@ func main() {
 		// num = copy(x[:3], x[1:])
 		// fmt.Println(x, num) [2 3 4 4] 3.
 	}()
+
+	fmt.Println("-----------------------------------------")
+	z := []int{0, 2, 3, 4}
+	changeFirst(z)
+	addSomething(z)
+	fmt.Println("z", z)
+}
+
+func changeFirst(data []int) {
+	data[0] = 1
+}
+
+func addSomething(data []int) {
+	data = append(data, 100)
+	// fmt.Println(data)
 }
