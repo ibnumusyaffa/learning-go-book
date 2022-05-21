@@ -4,6 +4,7 @@ import "fmt"
 
 type foo struct {
 	FirstName string
+	age       int
 }
 
 type person struct {
@@ -33,9 +34,13 @@ func main() {
 
 	fmt.Println("-----------------------------------------------------------------------------")
 
+	// create non nil pointer of int with default value (in this case 0)
 	var d = new(int)
+	// var d *int
+	fmt.Println("d:", d)
 	fmt.Println("d == nill :", d == nil) // prints false
-	fmt.Println("*d value", *d)          // prints 0
+	// safe deference because pointer is not nil
+	fmt.Println("*d value", *d) // prints 0
 
 	e := &foo{}
 	fmt.Println("e:", e)
