@@ -14,22 +14,22 @@ func main() {
 	fmt.Println("b:", b)
 
 	b[0] = 10
-	fmt.Println(b[0])
+	fmt.Println("b[0]", b[0])
 
 	var multiArray [][]int
 	multiArray = append(multiArray, []int{1, 2, 3})
 	multiArray = append(multiArray, []int{1, 2, 3})
-	fmt.Println("multi arr", multiArray)
+	fmt.Println("multiArray: ", multiArray)
 
 	//zero value = nil
 	var c []int
-	fmt.Println(c == nil) //true
+	fmt.Println("c == nil", c == nil) //true
 
 	//array with len 0 []
 	var d = []int{}
-	fmt.Println(d == nil) // false
-	fmt.Println(len(d))
-	fmt.Println(cap(d))
+	fmt.Println("d == nil:", d == nil) // false
+	fmt.Println("led(d):", len(d))
+	fmt.Println("cap(d):", cap(d))
 
 	//compile time error
 	// var e1 = []int{1, 2}
@@ -40,22 +40,22 @@ func main() {
 	var f []int
 	f = append(f, 1)
 	f = append(f, 2, 3)
-	fmt.Println(f)
+	fmt.Println("f:", f)
 	g := []int{3, 4}
 	f = append(f, g...)
-	fmt.Println(f)
+	fmt.Println("f:", f)
 
 	//create slice with make
 	h := make([]int, 0)
-	fmt.Println(h)        // []
-	fmt.Println(h == nil) //false
+	fmt.Println("h:", h)              // []
+	fmt.Println("h == nil", h == nil) //false
 
 	//create slice with length 5, capacity 10
 	i := make([]int, 5, 10) // [0,0,0,0,0]
 
 	fmt.Println("my init", i)
-	fmt.Println(len(i))
-	fmt.Println(cap(i))
+	fmt.Println("len(i):", len(i))
+	fmt.Println("cap(i):", cap(i))
 
 	//panic index out of range
 	// fmt.Println(i[10])
@@ -118,16 +118,16 @@ func main() {
 		fmt.Println(dest2)
 
 		//only return the number of element has copied
-		num1 := copy(dest1, src)
-		fmt.Println(dest1, num1)
+		copiedNum1 := copy(dest1, src)
+		fmt.Println("dest1 , copiedNum1", dest1, copiedNum1)
 
-		num2 := copy(dest2, src)
-		fmt.Println(dest2, num2)
+		copiedNum2 := copy(dest2, src)
+		fmt.Println("dest1 , copiedNum2", dest2, copiedNum2)
 
 		x := []int{1, 2, 3, 4}
 		y := make([]int, 2)
 		copy(y, x[2:])
-		fmt.Println(y)
+		fmt.Println("y:", y)
 
 		// x := []int{1, 2, 3, 4}
 		// num = copy(x[:3], x[1:])
