@@ -55,11 +55,59 @@ func createQuery(q interface{}) {
 }
 
 func main() {
-	o := order{
+	// o := order{
+	// 	ordId:      456,
+	// 	customerId: 56,
+	// 	name:       "ibnu",
+	// }
+	// createQuery(o)
+
+	a := 1
+	b := "hallo"
+	c := order{
 		ordId:      456,
 		customerId: 56,
 		name:       "ibnu",
 	}
-	createQuery(o)
+
+	at := reflect.TypeOf(a)
+	bt := reflect.TypeOf(b)
+	ct := reflect.TypeOf(c)
+
+	fmt.Println("at.Name() : ", at.Name())
+	fmt.Println("bt.Name() : ", bt.Name())
+	fmt.Println("ct.Name() : ", ct.Name())
+	fmt.Println("------------------------------------------------------------------")
+	fmt.Println("at.Kind() : ", at.Kind())
+	fmt.Println("bt.Kind() : ", bt.Kind())
+	fmt.Println("ct.Kind() : ", ct.Kind())
+
+	fmt.Println("------------------------------------------------------------------")
+	fmt.Println("at.Kind() == reflect.Int : ", at.Kind() == reflect.Int)
+	fmt.Println("bt.Kind() == reflect.String : ", bt.Kind() == reflect.String)
+	fmt.Println("ct.Kind() == reflect.Struct : ", ct.Kind() == reflect.Struct)
+
+	fmt.Println("valueof-------------------------------------------------------------------")
+
+	dt := reflect.ValueOf(c)
+	for i := 0; i < dt.NumField(); i++ {
+		switch dt.Field(i).Kind() {
+		case reflect.Int:
+			fmt.Println("", i, dt.Field(i).Kind(), dt.Field(i).Int())
+		case reflect.String:
+			fmt.Println("", i, dt.Field(i).Kind(), dt.Field(i).String())
+		default:
+			fmt.Println("Unsupported type")
+			return
+		}
+	}
+
+	fmt.Println("-------------------------------------------------------------------")
+	var e int
+	et := reflect.TypeOf(&e)
+	fmt.Println("dt.Name() :", et.Name())              // returns an empty string
+	fmt.Println("et.Kind() :", et.Kind())              // returns reflect.Ptr
+	fmt.Println("et.Elem().Name():", et.Elem().Name()) // returns "int"
+	fmt.Println("et.Elem().Kind():", et.Elem().Kind()) // returns reflect.Int
 
 }
